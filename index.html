@@ -291,7 +291,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>
 						</div>
 						<div class="sbm-it mt-3 form-group">
-                                <button class="btn btn-Secondary btn-block btn-lg" onclick="formObject()">
+                                <button class="btn btn-Secondary btn-block btn-lg" onclick="enviarMensaje()">
                                     SUSCRIBIRSE
                                 </button>
                         </div>
@@ -412,18 +412,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   var nombre = document.getElementById('nombre');
   var correo = document.getElementById('correo');
 
-  function formObject(){
+  function enviarMensaje(){
 
-    var objeto = {
-        nombre: nombre,
-        correo: correo
-    };
+  var  pnombre = '';
 
     if(nombre.value.lenght == 0){
         alert("Escriba un nombre y un correo valido");
     } else{
-        objeto.correo = correo.value;
-        objeto.nombre = nombre.value;
+        pnombre = nombre.value;
     }
 
     refernce.push().set(objeto)
