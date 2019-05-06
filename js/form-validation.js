@@ -54,7 +54,7 @@ function saveToFirebase(name,email){
         name: name
     };
 
-    firebase.database().ref('subscription-entries').push().set(personObject)
+    firebase.database().ref('form').push().set(personObject)
         .then(function(snapshot){
             alert("!Gracias " + name + "!");
         }, function(error){
