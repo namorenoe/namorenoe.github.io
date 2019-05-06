@@ -418,9 +418,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
   function enviarMensaje(){
 
-  var  pnombre = nombre.value;
-
-    refernce.push().set(objeto)
+    const objeto = {
+        pnombre: nombre,
+        pcorreo: correo
+    };
+    
+    reference.push().set(objeto)
         .then(function(snapshot){
             alert("Gracias "+ nombre + "!");
         }), function(error){
