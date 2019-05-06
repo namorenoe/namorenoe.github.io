@@ -419,8 +419,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   function enviarMensaje(){
 
     const objeto = {
-        pnombre: nombre,
-        pcorreo: correo
+        pnombre: nombre.value,
+        pcorreo: correo.value
     };
     
     reference.push().set(objeto)
