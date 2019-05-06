@@ -295,7 +295,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>
 						</div>
 						<div class="col-xs-12 form-group">
-                                <button class="btn btn-default btn-block btn-lg" onClick="enviarMensaje()">
+                                <button class="btn btn-dark btn-block btn-lg" onClick="enviarMensaje()">
                                     SUSCRIBIRSE
                                 </button>
                       </div>
@@ -419,13 +419,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   function enviarMensaje(){
 
     const objeto = {
-        pnombre: nombre.value,
-        pcorreo: correo.value
+        nombre: nombre.value,
+        correo: correo.value
     };
     
     reference.push().set(objeto)
         .then(function(snapshot){
-            alert("Gracias "+ nombre.value + "!");
+            alert("!Gracias "+ nombre.value + "!");
         }), function(error){
             console.log('error' + error);
         }
