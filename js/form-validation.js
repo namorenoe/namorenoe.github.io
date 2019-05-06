@@ -34,3 +34,30 @@ function validateForm(nombre,correo) {
       }
       
 }
+
+function formObject() {
+    var nombre = document.getElementsByName('nombre').value;
+    var correo = document.getElementsByName('correo').value;
+
+    if(validateForm(nombre,correo)){
+        saveToFirebase(nombre,correo);
+    } else{
+        alert("Ingrese un nombre y correo correcto");
+    }
+
+    
+}
+
+function saveToFirebase(name,email){
+    var personObject = {
+        email: email,
+        name: name
+    };
+
+    firebase.database().ref('subscription-entries').push().set(personObject)
+        .then(function(snapshot){
+            alert("!Gracias " + name + "!");
+        }, function(error){
+            console.log('error ' + error);
+        });
+}
