@@ -300,7 +300,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </button>
                       </div>
                     <div style="content-align:center">
-                        <h1 style="color: text-white" class="font-weight-light">Próximamente en:</h1>
+                        <h1 class="p">Próximamente en:</h1>
                     <img src="images/r1.png" style="width:150px; heigth: 150px">
                         <img src="images/r3.png" style="width:150px; heigth: 150px">
                             </div>
@@ -419,7 +419,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
   function enviarMensaje(){
 
-    const objeto = {
+    if(nombre.value == '' || correo.value == ''){
+        if(nombre.value== ''){
+            alert("Introduzca un nombre");
+        } else{
+            alert("Introduzca un correo electrónico");
+        }
+    }else{
+
+        const objeto = {
         nombre: nombre.value,
         correo: correo.value
     };
@@ -430,6 +438,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }), function(error){
             console.log('error' + error);
         }
+    }
 
   }
 </script>
