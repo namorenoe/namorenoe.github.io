@@ -274,6 +274,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!-- //blogs -->
  <!--/newsletter-->
+ <script>
+     function formObject(form) {
+    var nombre = document.getElementsByName('nombre').value;
+    var correo = document.getElementsByName('correo').value;
+
+    if(validateForm(nombre,correo)){
+        saveToFirebase(nombre,correo);
+    } else{
+        alert("Ingrese un nombre y correo correcto");
+    }
+
+    
+}
+
+function saveToFirebase(name,email){
+    var personObject = {
+        email: email,
+        name: name
+    };
+
+    firebase.database().ref('subscription-entries').push().set(personObject)
+        .then(function(snapshot){
+            alert("!Gracias " + name + "!");
+        }, function(error){
+            console.log('error ' + error);
+        });
+}
+ </script>
     <section class="newsletter_right_w3agile  py-md-5 py-4">
         <div class="container">
             <div class="inner-sec-w3layouts py-md-5 py-3">
@@ -281,7 +309,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<span class="text-uppercase">Aplicación</span>Obtén ya la app</h3>
 			   <div class="n-right-w3ls">
 					<p class="mb-5 text-white text-center"> Suscribete para obtener la app el día de lanzamiento</p>
-                    <form name="subscriptionForm" action="#" method="post">
+                    <form onsubmit="formObject(this)" method="post">
 						<div class="row">
 							<div class="col-md-6 form-group news-rt">
 								<input class="form-control" type="text" name="nombre" placeholder="Nombre" required="true">
