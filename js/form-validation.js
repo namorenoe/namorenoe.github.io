@@ -1,8 +1,6 @@
-function validateForm() {
-    var n = document.getElementById('name').value;
-    var e = document.getElementById('email').value;
-    var s = document.getElementById('subject').value;
-    var m = document.getElementById('message').value;
+function validateForm(nombre,correo) {
+    var n = nombre;
+    var e = correo;
     var onlyLetters =/^[a-zA-Z\s]*$/; 
     var onlyEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
@@ -30,28 +28,36 @@ function validateForm() {
         document.getElementById('emailLabel').innerHTML = ('Please enter a valid email address');
         document.getElementById('email').style.borderColor = "red";
         return false;
-    }
-  
-    if(s == "" || s == null ){
-          document.getElementById('subjectLabel').innerHTML = ('Please enter your subject');
-          document.getElementById('subject').style.borderColor = "red";
-          return false;
-      }
-  
-    if (!s.match(onlyLetters)) {
-        document.getElementById('subjectLabel').innerHTML = ('Please enter only letters');
-        document.getElementById('subject').style.borderColor = "red";
-        return false;
-    }
-  
-    if(m == "" || m == null){
-        document.getElementById('messageLabel').innerHTML = ('Please enter your message');
-        document.getElementById('message').style.borderColor = "red";
-        return false;
-    }
-  
+    } 
     else{
           return true;
       }
       
+}
+
+function formObject() {
+    var nombre = document.getElementById('nombre').value;
+    var correo = document.getElementById('correo').value;
+
+    if(validateForm(nombre,correo)){
+        saveToFirebase(nombre,correo);
+    } else{
+        alert("Ingrese un nombre y correo correcto");
+    }
+
+    
+}
+
+function saveToFirebase(name,email){
+    var personObject = {
+        email: email,
+        name: name
+    };
+
+    firebase.database().ref('subscription-entries').push().set(personObject)
+        .then(function(snapshot){
+            alert("!Gracias " + name + "!");
+        }, function(error){
+            console.log('error ' + error);
+        });
 }
